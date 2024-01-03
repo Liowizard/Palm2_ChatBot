@@ -20,9 +20,9 @@ def chat_bot(input_msg):
     response = palm.chat(messages=input_msg)
     # response = response.reply(input_msg)
     if not response.last:
-        response = palm.generate_text(prompt=input_msg, **defaults)
-        if not response.result:
-            return "CLAI> Sorry, I couldn't fetch a response for that."
+        # response = palm.generate_text(prompt=input_msg, **defaults)
+        # if not response.result:
+        return "Hi i am Digival AI and i am here to help with your Educational problems"
     else:
         return response.last
 
@@ -33,7 +33,7 @@ def chat_bot(input_msg):
 #     print(f"Model Name: {m.name}")
 
 
-# print(chat_bot("What is your"))
+# print(chat_bot("Where are you from"))
 
 
 # Model Name: models/chat-bison-001
