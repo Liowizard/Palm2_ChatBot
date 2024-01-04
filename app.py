@@ -1,24 +1,29 @@
 import os
 
-from flask import Flask, request
+from flask import Flask, jsonify, request
 
 from Chat_Bot import chat_bot
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def hello():
-    # Get the value of the 'input' parameter from the URL
-    input_value = request.args.get("input", "hii")
+    if request.is_json:
+        # Get the JSON data from the request
+        data = request.get_json()
 
-    # Print the input value
-    print("input_value", input_value)
+        # Get the value of the 'input' key from the JSON data
+        input_value = data.get("input", "Hi")
 
-    responce = chat_bot(input_value)
+        print("input_value", input_value)
 
-    # Return a response to the client
-    return responce
+        responce = chat_bot(input_value)
+
+        # Return a JSON response to the client
+        return jsonify({"responce": responce})
+    else:
+        return jsonify({"error": "Invalid JSON data"}), 400
 
 
 if __name__ == "__main__":
