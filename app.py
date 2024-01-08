@@ -7,6 +7,8 @@ from Chat_Bot import chat_bot
 
 app = Flask(__name__)
 
+CORS(app)
+
 
 @app.route("/", methods=["POST"])
 def hello():
