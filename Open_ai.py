@@ -1,6 +1,8 @@
+import os
+
 import openai
 
-openai.api_key = "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"
+openai.api_key = os.environ["PALM_API_KEY"]
 
 openai
 # client.api_key("")
