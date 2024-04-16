@@ -63,10 +63,6 @@ def New_chat_bot():
         return jsonify({"error": "Invalid JSON data"}), 400
 
 
-
-
-
-
 @app.route("/vertexai_chat_bot", methods=["POST"])
 def vertexai_chat():
     if request.is_json:
@@ -90,7 +86,9 @@ def vertexai_chat():
 
             default_kwargs.update(data)
 
-            return jsonify(list(vertexai_chat_bot(**default_kwargs)))
+            responce = vertexai_chat_bot(**default_kwargs)
+
+            return jsonify({"responce": responce})
         else:
             return jsonify({"responce": "sorry i havent receive a prompt"})
         # responce = chat_bot(prompt, json, temperature)
@@ -99,7 +97,6 @@ def vertexai_chat():
         # return jsonify({"responce": responce})
     else:
         return jsonify({"error": "Invalid JSON data"}), 400
-
 
 
 if __name__ == "__main__":
